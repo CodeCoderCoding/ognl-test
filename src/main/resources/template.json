@@ -1,0 +1,8 @@
+{
+  "name": "${user.name}",
+  "age": "${user.age}",
+  "address": "${user.address}",
+  "phone": "${user.phone ?: ''}",
+  "isAdult": "${user.age >= 18}",
+  "isStudent": "${user.school != null}"
+}

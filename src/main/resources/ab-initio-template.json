@@ -1,0 +1,43 @@
+{
+  "query": {
+    "type": "${queryType}",
+    <#if queryType == "simple">
+    "conditions": [
+      <#list conditions as condition>
+      {
+        "field": "${condition.field}",
+        "operator": "${condition.operator}",
+        "value": "${condition.value}"
+      }<#if condition_has_next>,</#if>
+      </#list>
+    ]
+    <#elseif queryType == "complex">
+    "conditions": [
+      <#list conditions as condition>
+      {
+        "field": "${condition.field}",
+        "operator": "${condition.operator}",
+        "value": "${condition.value}"
+      }<#if condition_has_next>,</#if>
+      </#list>
+    ],
+    "logic": "${logic}",
+    "subQueries": [
+      <#list subQueries as subQuery>
+      {
+        "type": "${subQuery.type}",
+        "conditions": [
+          <#list subQuery.conditions as condition>
+          {
+            "field": "${condition.field}",
+            "operator": "${condition.operator}",
+            "value": "${condition.value}"
+          }<#if condition_has_next>,</#if>
+          </#list>
+        ]
+      }<#if subQuery_has_next>,</#if>
+      </#list>
+    ]
+    </#if>
+  }
+}
